@@ -1,0 +1,41 @@
+.popupMain{
+    width: 350px;
+    height: 350px;
+    position: absolute;
+    background-color: whitesmoke;
+    border: 1px solid dimgrey;
+}
+.popup {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.span{
+    float: right;
+    font-weight: bold;
+    font-size: large;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.name{
+    align-content: center;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.input {
+    width: 200px;
+    height: 30px;
+    padding: 5px;
+}
+
+.button{
+    margin-top: 10px;
+    width: 60px;
+    height: 30px;
+}

@@ -1,0 +1,13 @@
+.container {
+    grid-area: aside;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.table {
+    width: 100px;
+    padding: 10px;
+    border: 1px solid black;
+}

@@ -1,0 +1,36 @@
+.App {
+  background-image: url("https://assets.awwwards.com/awards/images/2015/04/pattern.jpg");
+  min-height: 100vh;
+  display: grid;
+  grid-template-areas:
+  'header header'
+  'article aside';
+  grid-template-rows: 80px 1fr;
+  grid-template-columns: 1fr 30%;
+  text-align: center;
+}
+
+.gameField{
+  grid-area: article;
+  display: grid;
+  grid-template-areas:
+          'buttons content';
+  grid-template-rows: 1fr;
+  grid-template-columns: 50% 1fr;
+}
+
+.field {
+  grid-area: content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cells {
+  align-content: center;
+  align-self: center;
+  width: 320px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
