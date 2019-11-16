@@ -1,4 +1,4 @@
-import repository from "../repository/repository";
+// import repository from "../repository/repository";
 import {calculateWinner} from "../utility/objects-helpers";
 
 export const CLICK_ON_CELL = 'CLICK_ON_CELL';
@@ -11,6 +11,7 @@ export const SET_NAMES_GAMES = 'SET_NAMES_GAMES';
 export const START_GAME_WITH_COMPUTER = 'START_GAME_WITH_COMPUTER';
 export const MOVE_PLAYER = 'MOVE_PLAYER';
 export const STOP_COMPUTER_MOVE = 'STOP_COMPUTER_MOVE';
+export const SET_WINNER = 'SET_WINNER';
 
 
 const initialState = {
@@ -20,7 +21,11 @@ const initialState = {
         {id: 7, value: null}, {id: 8, value: null}, {id: 9, value: null},
     ],
     games: [
-        {id: 1, count: 1}
+        {id: 1, winnerPointsGamer1: 0, winnerPointsGamer2: 0},
+        {id: 2, winnerPointsGamer1: 0, winnerPointsGamer2: 0},
+        {id: 3, winnerPointsGamer1: 0, winnerPointsGamer2: 0},
+        {id: 4, winnerPointsGamer1: 0, winnerPointsGamer2: 0},
+        {id: 5, winnerPointsGamer1: 0, winnerPointsGamer2: 0},
     ],
     xIsNext: true,
     isStartGame: false,
@@ -28,6 +33,7 @@ const initialState = {
     gamer2: 'Gamer 2',
     isPopUpActive: false,
     isGameWithComputer: false,
+    currentGame: 0,
 };
 
 // export const setNamesGamesTC = (name1, name2) => async (dispatch) => {
@@ -36,13 +42,18 @@ const initialState = {
 // };
 
 export const startGameWithComputerTC = (id) => async (dispatch, getState) => {
-    debugger
-    await  dispatch(onMovePlayer(id));
+    await dispatch(onMovePlayer(id));
     let winner = await calculateWinner(getState().main.squares);
-    if(!winner){
+    if (!winner) {
         setTimeout(() => {
-            dispatch(startGameWithComputer())
-        },2000)
+            dispatch(startGameWithComputer());
+        }, 2000);
+        // if(winner === 'O'){
+        //     debugger
+        //     dispatch(setWinner(winner))
+        // }
+    } else {
+        dispatch(setWinner(winner))
     }
 };
 
@@ -61,6 +72,7 @@ const mainReducer = (state = initialState, action) => {
                 ...state,
                 isStartGame: !state.isStartGame,
                 isPopUpActive: !state.isPopUpActive,
+                currentGame: state.currentGame + 1,
             };
         case MOVE_PLAYER:
             let newArray = state.squares.map(s => (s.id === action.id) ? {...s, value: 'X'} : s);
@@ -75,6 +87,7 @@ const mainReducer = (state = initialState, action) => {
                 isStartGame: !state.isStartGame,
                 gamer2: 'COMPUTER',
                 isGameWithComputer: !state.isGameWithComputer,
+                currentGame: state.currentGame + 1,
             };
         case START_GAME_WITH_COMPUTER:
             let findId = () => {
@@ -99,11 +112,10 @@ const mainReducer = (state = initialState, action) => {
                 xIsNext: !state.xIsNext,
             };
         case STOP_COMPUTER_MOVE:
-            // const fullness = state.squares.filter(sq => sq.value === null).length;
             return {
                 ...state,
 
-            }
+            };
         case CLOSE_POP_UP:
             return {...state, isPopUpActive: !state.isPopUpActive};
         case EXIT_THE_GAME:
@@ -124,6 +136,7 @@ const mainReducer = (state = initialState, action) => {
                 isGameWithComputer: false,
             };
         case CONTINUE_GAME:
+
             return {
                 ...state,
             };
@@ -132,6 +145,22 @@ const mainReducer = (state = initialState, action) => {
                 ...state,
                 gamer1: action.name1 !== '' ? action.name1 : state.gamer1,
                 gamer2: action.name2 !== '' ? action.name2 : state.gamer2,
+            };
+        case SET_WINNER:
+            let newGamesArray = state.games.map((g) => {
+                if(state.currentGame === g.id){
+                    return {
+                        id: g.id,
+                        winnerPointsGamer1: action.winner === 'X' ? 1 : 0,
+                        winnerPointsGamer2: action.winner === 'O' ? 1 : 0,
+                    }
+                } else{
+                    return g;
+                }
+            });
+            return {
+                ...state,
+                games: newGamesArray,
             };
         default:
             return state;
@@ -147,6 +176,7 @@ export const gameWithComputer = () => ({type: GAME_WITH_COMPUTER});
 export const setNamesGamesTC = (name1, name2) => ({type: SET_NAMES_GAMES, name1, name2});
 export const startGameWithComputer = () => ({type: START_GAME_WITH_COMPUTER});
 export const onMovePlayer = (id) => ({type: MOVE_PLAYER, id});
+export const setWinner = (winner) => ({type: SET_WINNER, winner});
 // export const stopComputerMove = () => ({type: STOP_COMPUTER_MOVE});
 
 export default mainReducer;
