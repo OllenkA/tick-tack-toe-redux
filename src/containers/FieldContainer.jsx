@@ -2,14 +2,8 @@ import React, {Component} from 'react';
 import '../App.css';
 import Cell from "../components/Cell/Cell";
 import Field from "../components/Field/Field";
-import {
-    clickOnCell,
-    closePopUp,
-    setNamesGamesTC,
-    startGame,
-    startGameWithComputerTC,
-    onMovePlayer
-} from "../redux/main-reducer";
+import {startGameWithComputerTC} from "../redux/main-reducer";
+import {clickOnCell, closePopUp, setNamesGamesTC, startGame, onMovePlayer} from '../redux/actions'
 import {connect} from "react-redux";
 import {calculateWinner} from "../utility/objects-helpers";
 import ButtonsContainer from "./ButtonsContainer";

@@ -14,16 +14,9 @@ function Buttons(props) {
 
             {props.winner || (props.fullness === 0)?
                 <div className={styles.wrapperForButtons}>
-                {/*<button className={styles.button} onClick={props.startGameAgain}>NEW GAME</button>*/}
                 <button className={styles.button} onClick={props.exitTheGame}>EXIT FROM THIS MODE</button>
-                <button className={styles.button} onClick={props.continueGame}>NEW ROUND</button>
+                <button className={styles.button} onClick={props.continueGame}>CONTINUE ( NEW ROUND )</button>
             </div>:null}
-        {/*{props.winner || (props.fullness === 0)?*/}
-        {/*    <div className={styles.wrapperForButtons}>*/}
-        {/*    /!*<button className={styles.button} onClick={props.startGameAgain}>NEW GAME</button>*!/*/}
-        {/*    <button className={styles.button} onClick={props.gameWithComputer}>GAME with computer</button>*/}
-        {/*    <button className={styles.button} onClick={props.continueGame}>CONTINUE GAME</button>*/}
-        {/*</div> : null}*/}
     </section>
 }
 

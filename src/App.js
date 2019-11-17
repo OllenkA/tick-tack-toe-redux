@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Header from "./components/Header/Header";
 import FieldContainer from "./containers/FieldContainer";
-import ResultTable from "./components/ResultTable/ResultTable";
+import ResultTableContainer from "./containers/ResultTableContainer";
 
 
 function App() {
@@ -10,9 +10,7 @@ function App() {
     <div className="App">
           <Header/>
           <FieldContainer/>
-          <ResultTable/>
-          {/*<FooterContainer/>*/}
-          {/*<Settings/>*/}
+          <ResultTableContainer/>
     </div>
   );
 }

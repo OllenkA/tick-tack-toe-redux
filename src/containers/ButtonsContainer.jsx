@@ -1,12 +1,12 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {continueGame, gameWithComputer, startGame, exitTheGame, setWinner} from "../redux/main-reducer";
+import {continueGame, gameWithComputer, startGame, exitTheGame, setWinner}
+from "../redux/actions";
 import Buttons from "../components/Buttons/Buttons";
 import {calculateWinner} from "../utility/objects-helpers";
 
 
 function ButtonsContainer(props) {
-    // stoppedGame(props.squares, props.xIsNext, props.gamer1, props.gamer2);
     const winner = calculateWinner(props.squares);
     props.setWinner(winner);
     const fullness = props.squares.filter(sq => sq.value === null).length;
