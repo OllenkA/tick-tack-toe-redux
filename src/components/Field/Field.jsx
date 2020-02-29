@@ -8,13 +8,13 @@ const Field = ({
                    isPopUpEndActive, currentGame,
                    closePopUpEndOfTheGameTC, closePopUp,
                    isPopUpActive, gamer1, gamer2,
-                   setNamesGamesTC, cells, winner,
+                   setNamesGamesTC, cells, totalScore,
                }) => {
 
     return <article className="field">
         {!isPopUpEndActive && currentGame === 2 && <PopUpEndOfTheGame
             closePopUpEndOfTheGameTC={closePopUpEndOfTheGameTC}
-            winner={winner} gamer1={gamer1} gamer2={gamer2}
+            totalScore={totalScore} gamer1={gamer1} gamer2={gamer2}
         />}
         {isPopUpActive &&
         <PopUp

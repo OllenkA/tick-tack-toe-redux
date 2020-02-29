@@ -140,7 +140,7 @@ const mainReducer = (state = initialState, action) => {
                 isPopUpActive: false,
                 isGameWithComputer: false,
                 currentGame: 0,
-                isPopUpEndActive: false,
+                isPopUpEndActive: true,
             };
 
             //продолжаем игру(увеличиваем раунд) в выбранном режиме
@@ -192,6 +192,7 @@ const mainReducer = (state = initialState, action) => {
                 games: newGamesArray,
                 winner: action.winner === 'X'?'X':'Y'
             };
+
         case CLOSE_POP_UP_END_OF_THE_GAME:
             return {
                 ...state,
@@ -220,6 +221,7 @@ export const startGameWithComputerTC = (id) => async (dispatch, getState) => {
 };
 
 export const closePopUpEndOfTheGameTC = () => async (dispatch, getState) => {
+    debugger
   await dispatch(exitTheGame());
   dispatch(closePopUpEndOfTheGame());
 };

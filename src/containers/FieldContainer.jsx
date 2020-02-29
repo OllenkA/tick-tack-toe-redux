@@ -39,7 +39,8 @@ class FieldContainer extends Component {
                    setNamesGamesTC={this.props.setNamesGamesTC}
                    gamer1={this.props.gamer1}
                    gamer2={this.props.gamer2}
-                   winner={this.props.main}
+                   winner={this.props.winner}
+                   totalScore={this.props.totalScore}
             />
             <ButtonsContainer/>
         </article>
@@ -58,6 +59,7 @@ const mapStateToProps = (state) => {
         gamer1: state.main.gamer1,
         gamer2: state.main.gamer2,
         winner: state.main.winner,
+        totalScore: state.main.totalScore,
     }
 };
 

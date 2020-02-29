@@ -11,7 +11,8 @@ function PopUpEndOfTheGame(props) {
             </span>
             <section>
                 <h3>GAME OVER</h3>
-                <h5>Winner: {props.winner.toUpperCase() === "X" ? props.gamer1 : props.gamer2}</h5>
+                {props.totalScore.allPointsGamer1 > props.totalScore.allPointsGamer2? <p>Winner: {props.gamer1}</p>
+                    :<p>Winner: {props.gamer2}</p>}
             </section>
         </section>
     );
