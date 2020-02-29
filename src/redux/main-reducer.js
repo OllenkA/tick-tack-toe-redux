@@ -1,9 +1,11 @@
 // import repository from "../repository/repository";
 import {calculateWinner} from "../utility/objects-helpers";
 import {
-    CLICK_ON_CELL, CLOSE_POP_UP, CONTINUE_GAME, EXIT_THE_GAME,
-    GAME_WITH_COMPUTER, MOVE_PLAYER, onMovePlayer, SET_NAMES_GAMES, SET_WINNER, setWinner,
-    START_GAME, START_GAME_WITH_COMPUTER, startGameWithComputer, STOP_COMPUTER_MOVE
+    CLICK_ON_CELL, CLOSE_POP_UP, CLOSE_POP_UP_END_OF_THE_GAME,
+    closePopUpEndOfTheGame, CONTINUE_GAME, EXIT_THE_GAME,
+    exitTheGame, GAME_WITH_COMPUTER, MOVE_PLAYER, onMovePlayer,
+    SET_NAMES_GAMES, SET_WINNER, setWinner, START_GAME,
+    START_GAME_WITH_COMPUTER, startGameWithComputer, STOP_COMPUTER_MOVE
 } from "./actions";
 
 const initialState = {
@@ -29,6 +31,7 @@ const initialState = {
     isPopUpActive: false,
     isGameWithComputer: false,
     currentGame: 0,
+    isPopUpEndActive: false,
 };
 
 const mainReducer = (state = initialState, action) => {
@@ -136,6 +139,8 @@ const mainReducer = (state = initialState, action) => {
                 gamer2: 'Gamer 2',
                 isPopUpActive: false,
                 isGameWithComputer: false,
+                currentGame: 0,
+                isPopUpEndActive: false,
             };
 
             //продолжаем игру(увеличиваем раунд) в выбранном режиме
@@ -158,6 +163,7 @@ const mainReducer = (state = initialState, action) => {
                 squares: newSquaresAfterContinue,
                 currentGame: state.currentGame + 1,
                 totalScore: newTotalScore,
+                xIsNext: true,
             };
 
             //сетаем имена игроков в стейт
@@ -184,6 +190,12 @@ const mainReducer = (state = initialState, action) => {
             return {
                 ...state,
                 games: newGamesArray,
+                winner: action.winner === 'X'?'X':'Y'
+            };
+        case CLOSE_POP_UP_END_OF_THE_GAME:
+            return {
+                ...state,
+                isPopUpEndActive: !state.isPopUpEndActive,
             };
         default:
             return state;
@@ -205,6 +217,11 @@ export const startGameWithComputerTC = (id) => async (dispatch, getState) => {
     } else {
         dispatch(setWinner(winner))
     }
+};
+
+export const closePopUpEndOfTheGameTC = () => async (dispatch, getState) => {
+  await dispatch(exitTheGame());
+  dispatch(closePopUpEndOfTheGame());
 };
 
 export default mainReducer;

@@ -8,7 +8,7 @@ function ResultTable(props) {
         </section>
         <thead>
         <tr>
-            <th className={styles.table}>Number game</th>
+            <th className={styles.table}>Number round</th>
             <th className={styles.table}>{props.gamer1}</th>
             <th className={styles.table}>{props.gamer2}</th>
         </tr>
