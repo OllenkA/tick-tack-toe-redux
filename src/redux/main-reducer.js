@@ -176,8 +176,15 @@ const mainReducer = (state = initialState, action) => {
 
             //находим победителя и сетаем его очки в таблицу
         case SET_WINNER:
+            debugger
             let newGamesArray = state.games.map((g) => {
-                if(state.currentGame === g.id){
+                if(state.currentGame === g.id && action.winner === 'DRAW'){
+                    return {
+                        id: g.id,
+                        winnerPointsGamer1: 0,
+                        winnerPointsGamer2: 0,
+                    }
+                } else if(state.currentGame === g.id){
                     return {
                         id: g.id,
                         winnerPointsGamer1: action.winner === 'X' ? 1 : 0,
@@ -190,7 +197,7 @@ const mainReducer = (state = initialState, action) => {
             return {
                 ...state,
                 games: newGamesArray,
-                winner: action.winner === 'X'?'X':'Y'
+                // winner: action.winner === 'X'?'X':'Y',
             };
 
         case CLOSE_POP_UP_END_OF_THE_GAME:

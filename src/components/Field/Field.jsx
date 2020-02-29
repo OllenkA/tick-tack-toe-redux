@@ -12,7 +12,7 @@ const Field = ({
                }) => {
 
     return <article className="field">
-        {!isPopUpEndActive && currentGame === 2 && <PopUpEndOfTheGame
+        {!isPopUpEndActive && currentGame === 6 && <PopUpEndOfTheGame
             closePopUpEndOfTheGameTC={closePopUpEndOfTheGameTC}
             totalScore={totalScore} gamer1={gamer1} gamer2={gamer2}
         />}

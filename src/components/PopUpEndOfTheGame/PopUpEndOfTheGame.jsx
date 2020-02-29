@@ -1,18 +1,28 @@
 import React from 'react';
 import styles from "../PopUp/PopUp.module.css";
 
-function PopUpEndOfTheGame(props) {
+function PopUpEndOfTheGame({closePopUpEndOfTheGameTC,totalScore, gamer1, gamer2}) {
+
+    const totalAllScore =  () => {
+        if(totalScore.allPointsGamer1 > totalScore.allPointsGamer2){
+            return gamer1
+        } else if(totalScore.allPointsGamer1 < totalScore.allPointsGamer2){
+            return gamer2
+        } else {
+            return 'DEAD HEAT'
+        }
+    };
+
     return (
         <section  className={styles.popupMain}>
             <span
-                onClick={props.closePopUpEndOfTheGameTC}
+                onClick={closePopUpEndOfTheGameTC}
                 className={styles.span}>
                 X
             </span>
             <section>
                 <h3>GAME OVER</h3>
-                {props.totalScore.allPointsGamer1 > props.totalScore.allPointsGamer2? <p>Winner: {props.gamer1}</p>
-                    :<p>Winner: {props.gamer2}</p>}
+                Winner: {totalAllScore()}
             </section>
         </section>
     );

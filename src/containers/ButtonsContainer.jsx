@@ -14,7 +14,8 @@ function ButtonsContainer(props) {
     if (winner) {
         status = 'Winner : ' + (winner.toUpperCase() === "X" ? props.gamer1 : props.gamer2);
     } else if (!winner && fullness === 0) {
-        status = '0 : 0 --- DRAW'
+        status = '0 : 0 --- DRAW';
+        props.setWinner('DRAW')
     } else {
         status = 'Next move : ' + (props.xIsNext ? props.gamer1
             : props.gamer2);

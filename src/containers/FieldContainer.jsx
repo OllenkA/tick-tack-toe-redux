@@ -25,7 +25,6 @@ class FieldContainer extends Component {
                          isGameWithComputer={this.props.isGameWithComputer}
                          startGameWithComputerTC={this.props.startGameWithComputerTC}
                          onMovePlayer={this.props.onMovePlayer}
-                         squares={this.props.squares}
             />
         });
 
