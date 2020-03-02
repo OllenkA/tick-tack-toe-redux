@@ -1,29 +1,36 @@
 import React from 'react';
 import styles from "../PopUp/PopUp.module.css";
 
-function PopUpEndOfTheGame({closePopUpEndOfTheGameTC,totalScore, gamer1, gamer2}) {
+function PopUpEndOfTheGame({ exitTheGame, totalScore, gamer1, gamer2 }) {
 
-    const totalAllScore =  () => {
-        if(totalScore.allPointsGamer1 > totalScore.allPointsGamer2){
-            return gamer1
-        } else if(totalScore.allPointsGamer1 < totalScore.allPointsGamer2){
-            return gamer2
+    const totalAllScore = () => {
+        if (totalScore.allPointsGamer1 > totalScore.allPointsGamer2) {
+            return 'Winner: ' + gamer1
+        } else if (totalScore.allPointsGamer1 < totalScore.allPointsGamer2) {
+            return 'Winner: ' + gamer2
         } else {
             return 'DEAD HEAT'
         }
     };
 
     return (
-        <section  className={styles.popupMain}>
+        <section className={styles.popupMain}>
+
             <span
-                onClick={closePopUpEndOfTheGameTC}
+                onClick={exitTheGame}
                 className={styles.span}>
                 X
             </span>
+
             <section>
-                <h3>GAME OVER</h3>
-                Winner: {totalAllScore()}
+
+                <h2>GAME OVER</h2>
+                <h3>{totalAllScore()}</h3>
+                <h4>Score: {totalScore.allPointsGamer1} : {totalScore.allPointsGamer2}</h4>
+                <h4>To return to the menu - close this window!</h4>
+
             </section>
+
         </section>
     );
 }

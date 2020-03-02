@@ -1,11 +1,9 @@
-// import repository from "../repository/repository";
 import {calculateWinner} from "../utility/objects-helpers";
 import {
-    CLICK_ON_CELL, CLOSE_POP_UP, CLOSE_POP_UP_END_OF_THE_GAME,
-    closePopUpEndOfTheGame, CONTINUE_GAME, EXIT_THE_GAME,
-    exitTheGame, GAME_WITH_COMPUTER, MOVE_PLAYER, onMovePlayer,
-    SET_NAMES_GAMES, SET_WINNER, setWinner, START_GAME,
-    START_GAME_WITH_COMPUTER, startGameWithComputer, STOP_COMPUTER_MOVE
+    CLICK_ON_CELL, CLOSE_POP_UP, CONTINUE_GAME, EXIT_THE_GAME,
+    GAME_WITH_COMPUTER, MOVE_PLAYER, onMovePlayer,
+    SET_NAMES_GAMES, SET_TOTAL_SCORE, SET_WINNER, setTotalScore, setWinner, START_GAME,
+    START_GAME_WITH_COMPUTER, startGameWithComputer
 } from "./actions";
 
 const initialState = {
@@ -21,9 +19,10 @@ const initialState = {
         {id: 4, winnerPointsGamer1: 0, winnerPointsGamer2: 0},
         {id: 5, winnerPointsGamer1: 0, winnerPointsGamer2: 0},
     ],
-    totalScore: [
-        {id: 1, allPointsGamer1: 0, allPointsGamer2: 0},
-    ],
+    totalScore: {
+        allPointsGamer1: 0,
+        allPointsGamer2: 0,
+    },
     xIsNext: true,
     isStartGame: false,
     gamer1: 'Gamer 1',
@@ -31,15 +30,15 @@ const initialState = {
     isPopUpActive: false,
     isGameWithComputer: false,
     currentGame: 0,
-    isPopUpEndActive: false,
 };
 
 const mainReducer = (state = initialState, action) => {
     switch (action.type) {
+
         // клик по кнопке при игре с другом
         case CLICK_ON_CELL:
             let newSquares = state.squares.map(square => (square.id === action.id)
-                ? {...square, value: state.xIsNext ? 'X' : 'O'} : square);
+                ? {...square, value: state.xIsNext ?'X':'O'}: square);
             return {
                 ...state,
                 squares: newSquares,
@@ -98,12 +97,6 @@ const mainReducer = (state = initialState, action) => {
                 xIsNext: !state.xIsNext,
             };
 
-        case STOP_COMPUTER_MOVE:
-            return {
-                ...state,
-
-            };
-
             // закрываем всплывающее окно
         case CLOSE_POP_UP:
             return {...state, isPopUpActive: !state.isPopUpActive};
@@ -124,7 +117,6 @@ const mainReducer = (state = initialState, action) => {
                 }
             });
             let newTableScore = {
-                ...state.totalScore,
                 allPointsGamer1: 0,
                 allPointsGamer2: 0,
             };
@@ -140,7 +132,6 @@ const mainReducer = (state = initialState, action) => {
                 isPopUpActive: false,
                 isGameWithComputer: false,
                 currentGame: 0,
-                isPopUpEndActive: true,
             };
 
             //продолжаем игру(увеличиваем раунд) в выбранном режиме
@@ -151,18 +142,10 @@ const mainReducer = (state = initialState, action) => {
                     value: null,
                 }
             });
-            let newTotalScore = {
-                ...state.totalScore,
-                allPointsGamer1: state.games.map(g => g.winnerPointsGamer1).reduce((sum, current)=>
-                {return sum + current},0),// [0,0,0,0,0]
-                allPointsGamer2: state.games.map(g => g.winnerPointsGamer2).reduce((sum, current)=>
-                {return sum + current},0),// [0,0,0,0,0]
-            };
             return {
                 ...state,
                 squares: newSquaresAfterContinue,
                 currentGame: state.currentGame + 1,
-                totalScore: newTotalScore,
                 xIsNext: true,
             };
 
@@ -176,7 +159,6 @@ const mainReducer = (state = initialState, action) => {
 
             //находим победителя и сетаем его очки в таблицу
         case SET_WINNER:
-            debugger
             let newGamesArray = state.games.map((g) => {
                 if(state.currentGame === g.id && action.winner === 'DRAW'){
                     return {
@@ -197,23 +179,24 @@ const mainReducer = (state = initialState, action) => {
             return {
                 ...state,
                 games: newGamesArray,
-                // winner: action.winner === 'X'?'X':'Y',
             };
 
-        case CLOSE_POP_UP_END_OF_THE_GAME:
+            //подсчитываем итоговые очки и заносим в стейт
+        case SET_TOTAL_SCORE:
+            let newTotalScore = {
+                allPointsGamer1: state.games.map(g => g.winnerPointsGamer1).reduce((sum, current)=>
+                {return sum + current},0),// [0,0,0,0,0]
+                allPointsGamer2: state.games.map(g => g.winnerPointsGamer2).reduce((sum, current)=>
+                {return sum + current},0),// [0,0,0,0,0]
+            };
             return {
                 ...state,
-                isPopUpEndActive: !state.isPopUpEndActive,
+                totalScore: newTotalScore,
             };
         default:
             return state;
     }
 };
-
-// export const setNamesGamesTC = (name1, name2) => async (dispatch) => {
-//     await repository.saveUsersNames(name1, name2);
-//     dispatch(setNamesGames(name1, name2))
-// };
 
 export const startGameWithComputerTC = (id) => async (dispatch, getState) => {
     await dispatch(onMovePlayer(id));
@@ -227,10 +210,9 @@ export const startGameWithComputerTC = (id) => async (dispatch, getState) => {
     }
 };
 
-export const closePopUpEndOfTheGameTC = () => async (dispatch, getState) => {
-    debugger
-  await dispatch(exitTheGame());
-  dispatch(closePopUpEndOfTheGame());
+export const setWinnerTC = (winner) => async (dispatch, getState) => {
+    await dispatch(setWinner(winner));
+    dispatch(setTotalScore())
 };
 
 export default mainReducer;

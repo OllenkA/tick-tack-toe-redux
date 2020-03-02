@@ -1,6 +1,6 @@
 .cell {
-    width: 100px;
-    height: 100px;
+    width: 130px;
+    height: 130px;
     border: 1px solid black;
     outline: none;
     background-color: whitesmoke;
@@ -15,4 +15,9 @@
     justify-content: center;
     align-items: center;
     margin: 0;
+}
+
+.img {
+    width: 128px;
+    height: 128px;
 }

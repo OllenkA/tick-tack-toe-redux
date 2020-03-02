@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from './ResultTable.module.css';
 
-function ResultTable(props) {
+function ResultTable({games, gamer1, gamer2, allPointsGamer1, allPointsGamer2}) {
+
     return <div className={styles.container}>
         <section>
             <h2>Result table</h2>
@@ -9,11 +10,11 @@ function ResultTable(props) {
         <thead>
         <tr>
             <th className={styles.table}>Number round</th>
-            <th className={styles.table}>{props.gamer1}</th>
-            <th className={styles.table}>{props.gamer2}</th>
+            <th className={styles.table}>{gamer1}</th>
+            <th className={styles.table}>{gamer2}</th>
         </tr>
 
-        {props.games.map(g => {
+        {games.map(g => {
                     return (
                         <tr key={g.id}>
                             <td className={styles.table}>
@@ -34,10 +35,10 @@ function ResultTable(props) {
                       Total
                   </td>
                   <td className={styles.table}>
-                      {props.totalScore.allPointsGamer1}
+                      {allPointsGamer1}
                   </td>
                   <td className={styles.table}>
-                      {props.totalScore.allPointsGamer2}
+                      {allPointsGamer2}
                   </td>
               </tr>
         </thead>

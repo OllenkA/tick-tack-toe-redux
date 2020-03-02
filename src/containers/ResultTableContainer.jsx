@@ -10,9 +10,8 @@ const mapStateToProps = (state) => ({
     gamer1: state.main.gamer1,
     gamer2: state.main.gamer2,
     games: state.main.games,
-    winnerPointsGamer1: state.main.games.winnerPointsGamer1,
-    winnerPointsGamer2: state.main.games.winnerPointsGamer2,
-    totalScore: state.main.totalScore,
+    allPointsGamer1: state.main.totalScore.allPointsGamer1,
+    allPointsGamer2: state.main.totalScore.allPointsGamer2,
 });
 
 export default connect(mapStateToProps, {})(ResultTableContainer);

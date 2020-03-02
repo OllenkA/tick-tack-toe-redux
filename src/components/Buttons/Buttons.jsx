@@ -1,22 +1,28 @@
 import React from 'react';
 import styles from './Buttons.module.css';
+import GameModeSwitches from "../GameModeSwitches/GameModeSwitches";
+import ButtonsForChooseModeGame from "../ButtonsForChooseModeGame/ButtonsForChooseModeGame";
 
 
-function Buttons(props) {
+function Buttons({
+                     isStartGame, winner, fullness, status, startGame, gameWithComputer,
+                     exitTheGame, continueGame, currentGame
+                 }) {
+
     return <section className={styles.container}>
-        {props.isStartGame ?
-            <div><h2>THE ROUND {props.winner || (props.fullness === 0) ? 'OVER' : 'STARTED'}</h2>
-                <h3>{props.status}</h3></div>
-            : <section className={styles.startButtons}>
-                <button className={styles.button} onClick={props.startGame}>START GAME WITH FRIEND</button>
-                <button className={styles.button} onClick={props.gameWithComputer}>START GAME WITH COMPUTER</button>
-            </section>}
 
-            {props.winner || (props.fullness === 0)?
-                <div className={styles.wrapperForButtons}>
-                <button className={styles.button} onClick={props.exitTheGame}>EXIT FROM THIS MODE</button>
-                <button className={styles.button} onClick={props.continueGame}>CONTINUE ( NEW ROUND )</button>
-            </div>:null}
+        {currentGame === 6 ? <h2>GAME OVER</h2> : ((isStartGame) ?
+                <div>
+                    <h2>THE ROUND {winner || (fullness === 0) ? 'OVER' : 'STARTED'}</h2>
+                    <h3>{status}</h3>
+                </div>
+                : <ButtonsForChooseModeGame
+                    startGame={startGame} gameWithComputer={gameWithComputer}/>
+        )}
+
+        {(winner || (fullness === 0)) && <GameModeSwitches continueGame={continueGame}
+                                                           exitTheGame={exitTheGame}/>}
+
     </section>
 }
 

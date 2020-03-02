@@ -29,7 +29,8 @@
 .cells {
   align-content: center;
   align-self: center;
-  width: 320px;
+  width: 390px;
+  border: 1px solid black;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

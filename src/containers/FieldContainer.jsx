@@ -2,14 +2,15 @@ import React, {Component} from 'react';
 import '../App.css';
 import Cell from "../components/Cell/Cell";
 import Field from "../components/Field/Field";
-import {closePopUpEndOfTheGameTC, startGameWithComputerTC} from "../redux/main-reducer";
-import {clickOnCell, closePopUp, setNamesGamesTC, startGame, onMovePlayer} from '../redux/actions'
+import {startGameWithComputerTC} from "../redux/main-reducer";
+import {clickOnCell, closePopUp, setNamesGamesTC, startGame, onMovePlayer, exitTheGame} from '../redux/actions'
 import {connect} from "react-redux";
 import {calculateWinner} from "../utility/objects-helpers";
 import ButtonsContainer from "./ButtonsContainer";
 
 
 class FieldContainer extends Component {
+
     onClickCell = (id) => {
         if (calculateWinner(this.props.squares) || this.props.squares[this.props.squares.id]) {
             return;
@@ -30,7 +31,7 @@ class FieldContainer extends Component {
 
         return <article className={'gameField'}>
             <Field isPopUpActive={this.props.isPopUpActive}
-                   closePopUpEndOfTheGameTC={this.props.closePopUpEndOfTheGameTC}
+                   exitTheGame={this.props.exitTheGame}
                    isPopUpEndActive={this.props.isPopUpEndActive}
                    currentGame={this.props.currentGame}
                    cells={cells}
@@ -38,7 +39,7 @@ class FieldContainer extends Component {
                    setNamesGamesTC={this.props.setNamesGamesTC}
                    gamer1={this.props.gamer1}
                    gamer2={this.props.gamer2}
-                   winner={this.props.winner}
+                   numberOfGames={this.props.numberOfGames}
                    totalScore={this.props.totalScore}
             />
             <ButtonsContainer/>
@@ -57,12 +58,11 @@ const mapStateToProps = (state) => {
         isPopUpEndActive: state.main.isPopUpEndActive,
         gamer1: state.main.gamer1,
         gamer2: state.main.gamer2,
-        winner: state.main.winner,
+        numberOfGames: state.main.numberOfGames,
         totalScore: state.main.totalScore,
     }
 };
 
 export default connect(mapStateToProps, {
-    clickOnCell, closePopUp, startGame,
-    setNamesGamesTC, startGameWithComputerTC, onMovePlayer, closePopUpEndOfTheGameTC,
+    clickOnCell, closePopUp, startGame, setNamesGamesTC, startGameWithComputerTC, onMovePlayer, exitTheGame,
 })(FieldContainer);
