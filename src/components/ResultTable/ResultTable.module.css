@@ -1,13 +1,15 @@
 .container {
-    grid-area: aside;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+    margin-left: 50px;
+    border-collapse: collapse;
+    border: 1px solid black;
 }
 
-.table {
-    width: 100px;
-    padding: 10px;
+.container th, .container td {
     border: 1px solid black;
+}
+
+.headlineTable {
+    font-size: large;
+    padding: 10px;
+    font-weight: bolder;
 }
