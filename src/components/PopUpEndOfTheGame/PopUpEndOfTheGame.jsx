@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from "../PopUp/PopUp.module.css";
 
-function PopUpEndOfTheGame({ exitTheGame, totalScore, gamer1, gamer2 }) {
+function PopUpEndOfTheGame({exitTheGame, totalScore, gamer1, gamer2}) {
 
     const totalAllScore = () => {
         if (totalScore.allPointsGamer1 > totalScore.allPointsGamer2) {
@@ -13,16 +13,15 @@ function PopUpEndOfTheGame({ exitTheGame, totalScore, gamer1, gamer2 }) {
         }
     };
 
-    return (
+    return <article className={styles.container}>
         <section className={styles.popupMain}>
-
             <span
                 onClick={exitTheGame}
                 className={styles.span}>
                 X
             </span>
 
-            <section>
+            <section className={styles.popup}>
 
                 <h2>GAME OVER</h2>
                 <h3>{totalAllScore()}</h3>
@@ -32,7 +31,7 @@ function PopUpEndOfTheGame({ exitTheGame, totalScore, gamer1, gamer2 }) {
             </section>
 
         </section>
-    );
+    </article>
 }
 
 export default PopUpEndOfTheGame;

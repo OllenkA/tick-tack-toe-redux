@@ -4,7 +4,7 @@ import styles from '../Buttons/Buttons.module.css';
 
 function ButtonsForChooseModeGame({startGame, gameWithComputer}) {
 
-    return <section className={styles.startButtons}>
+    return <section className={styles.wrapperForButtons}>
 
         <button className={styles.button}
                 onClick={startGame}>

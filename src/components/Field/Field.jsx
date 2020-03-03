@@ -5,11 +5,11 @@ import PopUpEndOfTheGame from "../PopUpEndOfTheGame/PopUpEndOfTheGame";
 
 
 const Field = ({
-                   currentGame, exitTheGame, closePopUp,
-                   isPopUpActive, gamer1, gamer2, setNamesGamesTC, cells, totalScore,
+                   currentGame, exitTheGame, closePopUp, isPopUpActive, gamer1,
+                   gamer2, setNamesGamesTC, cells, totalScore,
                }) => {
 
-    return <article className="field">
+    return <article>
 
         { currentGame >= 6 && <PopUpEndOfTheGame
             exitTheGame={exitTheGame}
@@ -20,6 +20,7 @@ const Field = ({
         {isPopUpActive && <PopUp
             closePopUp={closePopUp}
             setNamesGamesTC={setNamesGamesTC}/>}
+
         <aside className="cells">
             {cells}
         </aside>

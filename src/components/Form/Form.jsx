@@ -12,17 +12,17 @@ const Form = ({handleSubmit}) => {
             </h4>
             <div>
                 <Field name={'gamer1'} component='input'
-                       placeholder={'Gamer 1'}/>
+                       placeholder={'Gamer 1'} className={styles.input}/>
             </div>
             <h4 className={styles.name}>
                 Enter name your rival, please:
             </h4>
             <div>
                 <Field name={'gamer2'} component='input'
-                       placeholder={'Gamer 2'}/>
+                       placeholder={'Gamer 2'} className={styles.input}/>
             </div>
             <button className={styles.button}>
-                Ok
+                HERE GOES..!
             </button>
         </form>
     );

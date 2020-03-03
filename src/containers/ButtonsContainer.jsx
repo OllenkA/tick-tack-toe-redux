@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {continueGame, gameWithComputer, startGame, exitTheGame}
-    from "../redux/actions";
+import {continueGame, gameWithComputer, startGame, exitTheGame} from "../redux/actions";
 import Buttons from "../components/Buttons/Buttons";
 import {calculateWinner} from "../utility/objects-helpers";
 import {setWinnerTC} from "../redux/main-reducer";
@@ -48,4 +47,5 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps,
-    {exitTheGame, gameWithComputer, continueGame, startGame, setWinnerTC})(ButtonsContainer);
+    {exitTheGame, gameWithComputer, continueGame,
+        startGame, setWinnerTC})(ButtonsContainer);

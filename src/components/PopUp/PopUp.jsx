@@ -11,13 +11,13 @@ function PopUp({closePopUp, setNamesGamesTC}) {
         closePopUp();
     };
 
-    return <section className={styles.popupMain}>
-
+    return <section className={styles.container}>
+        <article className={styles.popupMain}>
             <span onClick={closePopUp} className={styles.span}>
                 X
             </span>
             <ReduxForm onSubmit={onSubmit}/>
-
+        </article>
     </section>
 }
 

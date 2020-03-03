@@ -5,25 +5,27 @@ import ButtonsForChooseModeGame from "../ButtonsForChooseModeGame/ButtonsForChoo
 
 
 function Buttons({
-                     isStartGame, winner, fullness, status, startGame, gameWithComputer,
-                     exitTheGame, continueGame, currentGame
+                     isStartGame, winner, fullness, status, startGame, exitTheGame,
+                     gameWithComputer, continueGame, currentGame
                  }) {
 
-    return <section className={styles.container}>
+    return <article className={styles.container}>
+            {currentGame === 6 ? <h3>GAME OVER</h3> : ((isStartGame) ?
+                    <div className={styles.wrapperForText}>
+                        <h3>
+                            THE ROUND {winner || (fullness === 0) ? 'OVER' : 'STARTED'}
+                        </h3>
+                        <h4>{status}</h4>
+                    </div>
+                    : <ButtonsForChooseModeGame
+                        startGame={startGame} gameWithComputer={gameWithComputer}/>
+            )}
+        <section>
+            {(winner || (fullness === 0)) && <GameModeSwitches continueGame={continueGame}
+                                                               exitTheGame={exitTheGame}/>}
+        </section>
 
-        {currentGame === 6 ? <h2>GAME OVER</h2> : ((isStartGame) ?
-                <div>
-                    <h2>THE ROUND {winner || (fullness === 0) ? 'OVER' : 'STARTED'}</h2>
-                    <h3>{status}</h3>
-                </div>
-                : <ButtonsForChooseModeGame
-                    startGame={startGame} gameWithComputer={gameWithComputer}/>
-        )}
-
-        {(winner || (fullness === 0)) && <GameModeSwitches continueGame={continueGame}
-                                                           exitTheGame={exitTheGame}/>}
-
-    </section>
+    </article>
 }
 
 export default Buttons;

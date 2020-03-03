@@ -1,15 +1,27 @@
 .container {
-    margin-left: 50px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    margin-right: 10%;
     border-collapse: collapse;
-    border: 1px solid black;
+    border: 2px solid #fff9f0;
 }
 
 .container th, .container td {
     border: 1px solid black;
+    text-align: center;
 }
 
 .headlineTable {
     font-size: large;
     padding: 10px;
     font-weight: bolder;
+}
+
+.activeGame{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #ff3c21;
 }

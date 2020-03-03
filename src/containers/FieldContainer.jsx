@@ -6,7 +6,6 @@ import {startGameWithComputerTC} from "../redux/main-reducer";
 import {clickOnCell, closePopUp, setNamesGamesTC, startGame, onMovePlayer, exitTheGame} from '../redux/actions'
 import {connect} from "react-redux";
 import {calculateWinner} from "../utility/objects-helpers";
-import ButtonsContainer from "./ButtonsContainer";
 
 
 class FieldContainer extends Component {
@@ -29,20 +28,17 @@ class FieldContainer extends Component {
             />
         });
 
-        return <article className={'gameField'}>
+        return <article className={'field'}>
             <Field isPopUpActive={this.props.isPopUpActive}
                    exitTheGame={this.props.exitTheGame}
-                   isPopUpEndActive={this.props.isPopUpEndActive}
                    currentGame={this.props.currentGame}
                    cells={cells}
                    closePopUp={this.props.closePopUp}
                    setNamesGamesTC={this.props.setNamesGamesTC}
                    gamer1={this.props.gamer1}
                    gamer2={this.props.gamer2}
-                   numberOfGames={this.props.numberOfGames}
                    totalScore={this.props.totalScore}
             />
-            <ButtonsContainer/>
         </article>
     }
 }
@@ -55,14 +51,13 @@ const mapStateToProps = (state) => {
         isStartGame: state.main.isStartGame,
         isPopUpActive: state.main.isPopUpActive,
         currentGame: state.main.currentGame,
-        isPopUpEndActive: state.main.isPopUpEndActive,
         gamer1: state.main.gamer1,
         gamer2: state.main.gamer2,
-        numberOfGames: state.main.numberOfGames,
         totalScore: state.main.totalScore,
     }
 };
 
 export default connect(mapStateToProps, {
-    clickOnCell, closePopUp, startGame, setNamesGamesTC, startGameWithComputerTC, onMovePlayer, exitTheGame,
+    clickOnCell, closePopUp, startGame, setNamesGamesTC,
+    startGameWithComputerTC, onMovePlayer, exitTheGame,
 })(FieldContainer);

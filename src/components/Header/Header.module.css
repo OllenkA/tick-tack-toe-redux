@@ -1,4 +1,22 @@
-.header {
-    grid-area: header;
-    font-weight: bold;
+.pseudo {
+    font-size: 70px;
+    font-weight: 700;
+    font-style: italic;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    margin-left: 10%;
+    text-shadow: 4px 3px 0 #fff, 9px 8px 0 rgba(0,0,0,0.15);
+}
+
+
+.pseudo::before{
+    content:'';
+    position: absolute;
+    height: 20%;
+    width: 102%;
+    background-color: #ff3c21;
+    z-index: -1;
+    bottom: 2px;
 }

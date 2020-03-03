@@ -1,23 +1,58 @@
 .cell {
     width: 130px;
     height: 130px;
-    border: 1px solid black;
+    border-bottom: 8px solid #ff3c21;
+    border-right: 8px solid #ff3c21;
+    border-top: none;
+    border-left: none;
     outline: none;
-    background-color: whitesmoke;
-    color: black;
-    font-weight: bold;
-    font-size: xx-large;
-}
-
-.cell h2 {
+    text-decoration: none;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0);
+    color: #fff;
+    text-align: center;
+    letter-spacing: 1px;
+    transition: all 0.3s ease-out;
+}
+
+.cell:nth-child(3n){
+    border-right: none;
+    text-shadow: none;
+}
+
+.cell:nth-child(1n+7){
+    border-bottom: none;
+}
+
+.valueX {
     margin: 0;
+    font-size: 100px;
+    font-weight: 900;
+    text-align: center;
+    align-self: center;
+    color: #ff3c21;
+    text-shadow: 4px 3px 0 #fff, 9px 8px 0 rgba(0,0,0,0.15);
+}
+
+.value0{
+    margin: 0;
+    font-size: 100px;
+    font-weight: 900;
+    text-align: center;
+    align-self: center;
+    color: green;
+    text-shadow: 4px 3px 0 #fff, 9px 8px 0 rgba(0,0,0,0.15);
+}
+
+.withoutBorder{
+    border: none;
 }
 
 .img {
-    width: 128px;
-    height: 128px;
+    width: 118px;
+    height: 118px;
 }
