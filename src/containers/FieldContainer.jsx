@@ -24,7 +24,7 @@ class FieldContainer extends Component {
                          xIsNext={this.props.xIsNext} onClickCell={this.onClickCell}
                          isGameWithComputer={this.props.isGameWithComputer}
                          startGameWithComputerTC={this.props.startGameWithComputerTC}
-                         onMovePlayer={this.props.onMovePlayer}
+                         onMovePlayer={this.props.onMovePlayer} isRoundStarted={this.props.isRoundStarted}
             />
         });
 
@@ -38,6 +38,7 @@ class FieldContainer extends Component {
                    gamer1={this.props.gamer1}
                    gamer2={this.props.gamer2}
                    totalScore={this.props.totalScore}
+                   isRoundStarted={this.props.isRoundStarted}
             />
         </article>
     }
@@ -54,6 +55,7 @@ const mapStateToProps = (state) => {
         gamer1: state.main.gamer1,
         gamer2: state.main.gamer2,
         totalScore: state.main.totalScore,
+        isRoundStarted: state.main.isRoundStarted,
     }
 };
 

@@ -25,6 +25,7 @@ const initialState = {
     },
     xIsNext: true,
     isStartGame: false,
+    isRoundStarted: false,
     gamer1: 'Gamer 1',
     gamer2: 'Gamer 2',
     isPopUpActive: false,
@@ -52,6 +53,7 @@ const mainReducer = (state = initialState, action) => {
                 isStartGame: !state.isStartGame,//true
                 isPopUpActive: !state.isPopUpActive,//true
                 currentGame: state.currentGame + 1,//1,2,3,4,5// max5
+                isRoundStarted: true,//раунд начался !state.isRoundStarted
             };
 
             //ход игрока при игре с компьютером
@@ -71,6 +73,7 @@ const mainReducer = (state = initialState, action) => {
                 gamer2: 'COMPUTER',
                 isGameWithComputer: !state.isGameWithComputer,//true
                 currentGame: state.currentGame + 1,
+                isRoundStarted: true,
             };
 
             // ход компьютера при игре с компьютером
@@ -132,6 +135,7 @@ const mainReducer = (state = initialState, action) => {
                 isPopUpActive: false,
                 isGameWithComputer: false,
                 currentGame: 0,
+                isRoundStarted: false,
             };
 
             //продолжаем игру(увеличиваем раунд) в выбранном режиме
@@ -147,6 +151,7 @@ const mainReducer = (state = initialState, action) => {
                 squares: newSquaresAfterContinue,
                 currentGame: state.currentGame + 1,
                 xIsNext: true,
+                isRoundStarted: true,
             };
 
             //сетаем имена игроков в стейт
@@ -192,6 +197,7 @@ const mainReducer = (state = initialState, action) => {
             return {
                 ...state,
                 totalScore: newTotalScore,
+                isRoundStarted: false,
             };
         default:
             return state;
@@ -210,7 +216,7 @@ export const startGameWithComputerTC = (id) => async (dispatch, getState) => {
     }
 };
 
-export const setWinnerTC = (winner) => async (dispatch, getState) => {
+export const setWinnerTC = (winner) => async (dispatch) => {
     await dispatch(setWinner(winner));
     dispatch(setTotalScore())
 };
