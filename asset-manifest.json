@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/tick-tack-toe-redux/static/css/main.5516dec6.chunk.css",
+    "main.js": "/tick-tack-toe-redux/static/js/main.7c075489.chunk.js",
+    "main.js.map": "/tick-tack-toe-redux/static/js/main.7c075489.chunk.js.map",
+    "runtime-main.js": "/tick-tack-toe-redux/static/js/runtime-main.5b8e1773.js",
+    "runtime-main.js.map": "/tick-tack-toe-redux/static/js/runtime-main.5b8e1773.js.map",
+    "static/js/2.98971b70.chunk.js": "/tick-tack-toe-redux/static/js/2.98971b70.chunk.js",
+    "static/js/2.98971b70.chunk.js.map": "/tick-tack-toe-redux/static/js/2.98971b70.chunk.js.map",
+    "index.html": "/tick-tack-toe-redux/index.html",
+    "precache-manifest.153bf890635db23f9bc030a9e460cb65.js": "/tick-tack-toe-redux/precache-manifest.153bf890635db23f9bc030a9e460cb65.js",
+    "service-worker.js": "/tick-tack-toe-redux/service-worker.js",
+    "static/css/main.5516dec6.chunk.css.map": "/tick-tack-toe-redux/static/css/main.5516dec6.chunk.css.map",
+    "static/js/2.98971b70.chunk.js.LICENSE.txt": "/tick-tack-toe-redux/static/js/2.98971b70.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5b8e1773.js",
+    "static/js/2.98971b70.chunk.js",
+    "static/css/main.5516dec6.chunk.css",
+    "static/js/main.7c075489.chunk.js"
+  ]
+}
